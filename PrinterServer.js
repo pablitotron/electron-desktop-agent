@@ -14,9 +14,8 @@ exports.PrinterServer = class PrinterServer extends EventEmitter {
         this.emit('event', 'Initializing Printer Server...');
         this.router = new Router();
         this.router.get("/status", function(request, response) {
-            this.emit('event', 'Printer status requested');
-            var res = { status: 'idle' };
-            response.end(res);
+            //this.emit('event', 'Printer status requested');
+            response.end("Hola Mundo!");
         });
 
         this.server = http.createServer(this.router);
