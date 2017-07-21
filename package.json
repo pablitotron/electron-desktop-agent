@@ -16,9 +16,8 @@
   ],
   "author": "FolderIT",
   "license": "CC0-1.0",
-  // "devDependencies": {
-    
-  // },
+  "devDependencies": {
+  },
   "build": {
     "appId": "com.folderit.hermes.desktopagent",
     "files": [
