@@ -14,20 +14,30 @@ exports.TxtDriver = class TxtDriver extends DriverInterface {
     }
 
     sendCommand(command, fields, skipStatusErrors = false) {
-        message = chr(0x02) + chr(98) + chr(command);
+        message = String.fromCharCode(0x02) + String.fromCharCode(98) + String.fromCharCode(command);
         if (fields) {
-            message += chr(0x1c);
+            message += String.fromCharCode(0x1c);
         }
-        message += chr(0x1c).join(fields);
-        message += chr(0x03);
-        checkSum = sum([ord(x) for x in message ]);
-        checkSumHexa = ("0000" + hex(checkSum)[2:])[-4:].upper();
+        message += String.fromCharCode(0x1c).join(fields);
+        message += String.fromCharCode(0x03);
+        // checkSum = sum([ord(x) for x in message ]);
+        checkSum = this.getCheckSum(message);
+        // checkSumHexa = ("0000" + hex(checkSum)[2:])[-4:].upper();
+        checkSumHexa = ("0000" + checkSum.toString(16).substring(2)).substring(checkSum.length - 4).toUpperCase();
         message += checkSumHexa;
         console.log(message);
         // this.file.write(message + "\n");
         fs.writeFile(path, message);        
         randomNumber = getRandomInteger(2, 12432);
         return getCommandResponse("", randomNumber, 10);
+    }
+
+    getCheckSum(message) {
+        let checkSum = 0;
+        for(i = 0; i < message.length; i++) {
+            checkSum += message[i].charCodeAt(0);
+        }
+        return checkSum;
     }
 
     close() {

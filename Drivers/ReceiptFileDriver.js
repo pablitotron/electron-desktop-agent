@@ -12,8 +12,9 @@ exports.ReceiptFileDriver = class ReceiptFileDriver {
     // .. inheritance-diagram:: escpos.printer.File
     //     :parts: 1    
 
-	init(devfile="/dev/usb/lp0", auto_flush=true, *args, **kwargs) {
-        printer.File.init(devfile, auto_flush, *args, **kwargs);
+    // args es una lista y kwargs es un mapa
+	init(devfile="/dev/usb/lp0", auto_flush=true, args, kwargs) {
+        printer.File.init(devfile, auto_flush, args, kwargs);
     }
 
 }

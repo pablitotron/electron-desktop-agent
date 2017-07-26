@@ -1,5 +1,5 @@
 // Interfaz que deben cumplir las impresoras fiscales.
-exports.DriverInterface = class DriverInterface {  
+exports.DriverInterface = class DriverInterface {
 
     // Documentos no fiscales
 
