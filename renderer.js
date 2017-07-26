@@ -3,14 +3,14 @@
 // All of the Node.js APIs are available in this process.
 const PrinterServer = require('./PrinterServer').PrinterServer;
 const printerSrv = new PrinterServer(4444);
-const eol = "&#13;&#10;";
+const eol = "\\r\\n";
 
 // Componentes gráficos
 const abutton = document.getElementById('abutton');
-const txtlog = document.getElementById('txtlog');
 
 function writeLog(msg) {
-  txtlog.innerText = txtlog.innerText + msg + eol;
+  let txtlog = document.getElementById('txtlog');
+  txtlog.value = txtlog.vale + msg + eol;
   console.log(msg);
 }
 
